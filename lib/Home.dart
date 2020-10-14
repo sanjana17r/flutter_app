@@ -10,14 +10,16 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage>
+    with SingleTickerProviderStateMixin {
   TabController tab;
   bool showFab = false;
 
   @override
   void initState() {
     super.initState();
-    tab = TabController(length: 4, vsync: null, initialIndex: 1);
+
+    tab = TabController(length: 4, vsync: this, initialIndex: 1);
     tab.addListener(() {
       if (tab.index == 1)
         showFab = true;
@@ -30,61 +32,59 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    bool showFab = false;
-    return DefaultTabController(
-        length: 4,
-        child: Scaffold(
-          appBar: PreferredSize(
-              preferredSize: Size.fromHeight(110.0),
-              child: AppBar(
-                title: Text('WhatsApp'),
-                actions: <Widget>[
-                  IconButton(
-                      icon: Icon(
-                        Icons.search,
-                        color: Colors.white,
-                      ),
-                      onPressed: null),
-                  IconButton(
-                      icon: Icon(
-                        Icons.more_vert,
-                        color: Colors.white,
-                      ),
-                      onPressed: null),
-                ],
-                bottom: TabBar(tabs: [
-                  Tab(
-                    icon: Icon(Icons.camera_alt),
-                  ),
-                  Tab(
-                    icon: Text('CHATS'),
-                  ),
-                  Tab(
-                    icon: Text('STATUS'),
-                  ),
-                  Tab(
-                    icon: Text('CALLS'),
-                  )
-                ]),
-              )),
-          body: TabBarView(
-            children: [
-              CameraScreen(),
-              ChatScreen(),
-              Status(),
-              Calls(),
-            ],
-          ),
-          floatingActionButton: showFab
-              ? FloatingActionButton(
-                  backgroundColor: Theme.of(context).accentColor,
-                  child: Icon(
-                    Icons.message,
+    return Scaffold(
+      appBar: PreferredSize(
+          preferredSize: Size.fromHeight(110.0),
+          child: AppBar(
+            title: Text('WhatsApp'),
+            actions: <Widget>[
+              IconButton(
+                  icon: Icon(
+                    Icons.search,
                     color: Colors.white,
                   ),
-                  onPressed: () => print('Open chats'),
-                )
-              : null,
-        ));
+                  onPressed: null),
+              IconButton(
+                  icon: Icon(
+                    Icons.more_vert,
+                    color: Colors.white,
+                  ),
+                  onPressed: null),
+            ],
+            bottom: TabBar(controller: tab, tabs: [
+              Tab(
+                icon: Icon(Icons.camera_alt),
+              ),
+              Tab(
+                icon: Text('CHATS'),
+              ),
+              Tab(
+                icon: Text('STATUS'),
+              ),
+              Tab(
+                icon: Text('CALLS'),
+              )
+            ]),
+          )),
+      body: TabBarView(
+        controller: tab,
+        children: [
+          CameraScreen(),
+          ChatScreen(),
+          Status(),
+          Calls(),
+        ],
+      ),
+      floatingActionButton: showFab
+          ? FloatingActionButton(
+              backgroundColor: Theme.of(context).accentColor,
+              child: Icon(
+                Icons.message,
+                color: Colors.white,
+              ),
+              onPressed: () => print('Open chats'),
+            )
+          : null,
+    );
   }
 }

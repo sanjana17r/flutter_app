@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'Home.dart';
+import 'package:camera/camera.dart';
+
+List<CameraDescription> camera;
 
 void main() {
   runApp(MyApp());

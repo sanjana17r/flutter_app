@@ -7,7 +7,6 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  bool showFab = true;
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
