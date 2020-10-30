@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:camera/camera.dart';
 import 'camera_tab.dart';
 import 'calls_tab.dart';
 import 'chats_tab.dart';
 import 'status_tab.dart';
 
 class MyHomePage extends StatefulWidget {
+  final List<CameraDescription> cameras;
+  MyHomePage({this.cameras});
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -69,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage>
       body: TabBarView(
         controller: tab,
         children: [
-          CameraScreen(),
+          CameraScreen(widget.cameras),
           ChatScreen(),
           Status(),
           Calls(),

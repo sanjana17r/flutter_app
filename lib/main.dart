@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'Home.dart';
 import 'package:camera/camera.dart';
+//import 'f'
 
-List<CameraDescription> camera;
+List<CameraDescription> cameras;
 
-void main() {
+Future<Null> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  cameras = await availableCameras();
   runApp(MyApp());
 }
 
@@ -21,7 +24,7 @@ class MyApp extends StatelessWidget {
         accentColor: new Color(0xff25D366),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(),
+      home: MyHomePage(cameras: cameras),
     );
   }
 }
