@@ -1,4 +1,4 @@
-# new_project
+# WhatsApp Clone
 
 WhatsApp clone
 
