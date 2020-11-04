@@ -1,10 +1,10 @@
 # new_project
 
-A new Flutter project.
+WhatsApp clone
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project is a whatsApp clone
 
 A few resources to get you started if this is your first Flutter project:
 
