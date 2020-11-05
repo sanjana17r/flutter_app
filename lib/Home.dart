@@ -4,6 +4,7 @@ import 'package:camera/camera.dart';
 import 'camera_tab.dart';
 import 'calls_tab.dart';
 import 'chats_tab.dart';
+import 'contact_area.dart';
 import 'status_tab.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -40,6 +41,7 @@ class _MyHomePageState extends State<MyHomePage>
       appBar: PreferredSize(
           preferredSize: Size.fromHeight(110.0),
           child: AppBar(
+            leading: null,
             title: Text('WhatsApp'),
             actions: <Widget>[
               IconButton(
@@ -86,7 +88,12 @@ class _MyHomePageState extends State<MyHomePage>
                 Icons.message,
                 color: Colors.white,
               ),
-              onPressed: () => print('Open chats'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Contactarea()),
+                );
+              },
             )
           : null,
     );
